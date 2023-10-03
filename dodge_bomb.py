@@ -48,7 +48,10 @@ def main():
         pg.K_RIGHT:(+5,0),
     }
 
-    #ace=[a for a in range(1,11)]
+    angle_list={
+        pg.K_UP:1,pg.K_DOWN:1,pg.K_RIGHT:1,pg.K_LEFT:1,
+
+    }
 
     
     bb_rct.center=(x,y)#rectにランダムな座標を設定する
@@ -57,12 +60,18 @@ def main():
     clock = pg.time.Clock()
     tmr = 0
     while True:
+        key_lst=pg.key.get_pressed()#key有効化
         for event in pg.event.get():
             if event.type == pg.QUIT: 
                 return
             
+        if key_lst[pg.K_f]:
+            for cnt in range(1500):
+                shld=1
+            
+            
         if kk_rct.colliderect(bb_rct):#ren5爆弾と衝突したら
-
+        
             screen.blit(bg_img, [0, 0])#追加機能3
             screen.blit(end_img,kk_rct)#追加機能3
             
@@ -70,7 +79,7 @@ def main():
             time.sleep(2)
             print("game over")
             return
-
+        
         screen.blit(bg_img, [0, 0])
         screen.blit(kk_img, kk_rct)#ren3移動量に応じて更新
         ########bomb###########
@@ -81,13 +90,9 @@ def main():
         if not tate:#縦方向にはみ出たら
             vy *= -1
         
-        #for r in range(1,11):
-            #bb=pg.surface((20*r,20*r))
-            #pg.draw.circle(bb,(255,0,0),(10*r,10*r),10*r)
-            #bb.append(bb)
         screen.blit(bb, bb_rct)
 
-        key_lst=pg.key.get_pressed()#key有効化
+        
         sum_mv=[0,0]
         
         for key,mv in delta.items():#ren3key入力判断
@@ -97,6 +102,8 @@ def main():
         kk_rct.move_ip(sum_mv)
         if check_bound(kk_rct) != (True ,True):
             kk_rct.move_ip(-sum_mv[0], -sum_mv[1])
+
+       
 
 
         pg.display.update()
