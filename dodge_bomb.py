@@ -25,8 +25,24 @@ def main():
     screen = pg.display.set_mode((WIDTH, HEIGHT))
     bg_img = pg.image.load("ex02/fig/pg_bg.jpg")
     kk_img = pg.image.load("ex02/fig/3.png")
+    kk02_img = pg.image.load("ex02/fig/3.png")
+    kk03_img = pg.image.load("ex02/fig/3.png")
+    kk04_img = pg.image.load("ex02/fig/3.png")
+    kk05_img = pg.image.load("ex02/fig/3.png")
+    kk06_img = pg.image.load("ex02/fig/3.png")
+    kk07_img = pg.image.load("ex02/fig/3.png")
+    kk08_img = pg.image.load("ex02/fig/3.png")
     end_img = pg.image.load("ex02/fig/1.png")
     kk_img = pg.transform.rotozoom(kk_img, 0, 2.0)
+    kk02_img = pg.transform.rotozoom(kk02_img, 45, 2.0)
+    kk03_img = pg.transform.rotozoom(kk03_img, 90, 2.0)
+    kk04_img = pg.transform.rotozoom(kk04_img, 135, 2.0)
+    kk05_img = pg.transform.rotozoom(kk05_img, 180, 2.0)
+    kk06_img = pg.transform.rotozoom(kk06_img, 225, 2.0)
+    kk07_img = pg.transform.rotozoom(kk07_img, 270, 2.0)
+    kk08_img = pg.transform.rotozoom(kk08_img, 315, 2.0)
+
+
     end_img = pg.transform.rotozoom(end_img, 0, 2.5)
     bb = pg.Surface((20, 20))
     pg.draw.circle(bb, (255, 0, 0), (10, 10), 10)
@@ -49,8 +65,7 @@ def main():
     }
 
     angle_list={
-        pg.K_UP:1,pg.K_DOWN:1,pg.K_RIGHT:1,pg.K_LEFT:1,
-
+        pg.K_UP:kk02_img,pg.K_DOWN:kk03_img,pg.K_RIGHT:kk04_img,pg.K_LEFT:kk05_img,
     }
 
     
