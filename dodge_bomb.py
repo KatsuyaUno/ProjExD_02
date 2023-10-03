@@ -6,6 +6,7 @@ import random
 
 WIDTH, HEIGHT = 800, 600
 
+
 def check_bound(obj_rct:pg.Rect):
     """
     引数:こうかとんRect or 爆弾rect
@@ -41,15 +42,12 @@ def main():
     kk06_img = pg.transform.rotozoom(kk06_img, 225, 2.0)
     kk07_img = pg.transform.rotozoom(kk07_img, 270, 2.0)
     kk08_img = pg.transform.rotozoom(kk08_img, 315, 2.0)
-
-
     end_img = pg.transform.rotozoom(end_img, 0, 2.5)
     bb = pg.Surface((20, 20))
     pg.draw.circle(bb, (255, 0, 0), (10, 10), 10)
     bb_rct=bb.get_rect()#surfaceからrect抽出
     kk_rct=kk_img.get_rect()#surfaceからrect抽出
     end_rct=end_img.get_rect()
-
     kk_rct.center=(450,200)
     end_rct.center=(450,250)
     x=random.randint(0,WIDTH)
@@ -57,6 +55,7 @@ def main():
     vx=+5
     vy=+5
     
+
     delta={#ren3移動量リスト
         pg.K_UP:(0,-5), 
         pg.K_DOWN:(0,+5),
@@ -64,11 +63,13 @@ def main():
         pg.K_RIGHT:(+5,0),
     }
 
+
     angle_list={
         pg.K_UP:kk02_img,pg.K_DOWN:kk03_img,pg.K_RIGHT:kk04_img,pg.K_LEFT:kk05_img,
     }
 
-    
+    #accs= [a for a in range(1, 11)]
+
     bb_rct.center=(x,y)#rectにランダムな座標を設定する
     bb.set_colorkey((0, 0, 0))
 
@@ -80,11 +81,7 @@ def main():
             if event.type == pg.QUIT: 
                 return
             
-        if key_lst[pg.K_f]:
-            for cnt in range(1500):
-                shld=1
-            
-            
+      
         if kk_rct.colliderect(bb_rct):#ren5爆弾と衝突したら
         
             screen.blit(bg_img, [0, 0])#追加機能3
@@ -95,6 +92,7 @@ def main():
             print("game over")
             return
         
+
         screen.blit(bg_img, [0, 0])
         screen.blit(kk_img, kk_rct)#ren3移動量に応じて更新
         ########bomb###########
@@ -104,22 +102,21 @@ def main():
             vx *= -1
         if not tate:#縦方向にはみ出たら
             vy *= -1
-        
-        screen.blit(bb, bb_rct)
 
-        
+        #avx, avy= vx*accs[min(tmr//500, 9)], vy*accs[min(tmr//500, 9)]
+        #bb=bb[min(tmr//500, 9)]
+        screen.blit(bb, bb_rct)
         sum_mv=[0,0]
         
+
         for key,mv in delta.items():#ren3key入力判断
             if key_lst[key]:
                 sum_mv[0]+=mv[0]
                 sum_mv[1]+=mv[1]
         kk_rct.move_ip(sum_mv)
+
         if check_bound(kk_rct) != (True ,True):
             kk_rct.move_ip(-sum_mv[0], -sum_mv[1])
-
-       
-
 
         pg.display.update()
         tmr += 1
