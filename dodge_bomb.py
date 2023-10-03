@@ -48,20 +48,20 @@ def main():
     bb = pg.Surface((20, 20))
     pg.draw.circle(bb, (255, 0, 0), (10, 10), 10)
 
-    bb_rct=bb.get_rect()#surfaceからrect抽出
-    kk_rct=kk_img.get_rect()#surfaceからrect抽出
+    bb_rct=bb.get_rect() #surfaceからrect抽出
+    kk_rct=kk_img.get_rect() #surfaceからrect抽出
     end_rct=end_img.get_rect()
 
     kk_rct.center=(450,200)
     end_rct.center=(450,250)
-    
+
     x=random.randint(0,WIDTH)
     y=random.randint(0,HEIGHT)
     vx=+5
     vy=+5
     
 
-    delta={#ren3移動量リスト
+    delta={           #ren3移動量リスト
         pg.K_UP:(0,-5), 
         pg.K_DOWN:(0,+5),
         pg.K_LEFT:(-5,0),
@@ -75,22 +75,22 @@ def main():
 
     #accs= [a for a in range(1, 11)]
 
-    bb_rct.center=(x,y)#rectにランダムな座標を設定する
+    bb_rct.center=(x,y) #rectにランダムな座標を設定する
     bb.set_colorkey((0, 0, 0))
 
     clock = pg.time.Clock()
     tmr = 0
     while True:
-        key_lst=pg.key.get_pressed()#key有効化
+        key_lst=pg.key.get_pressed() #key有効化
         for event in pg.event.get():
             if event.type == pg.QUIT: 
                 return
             
       
-        if kk_rct.colliderect(bb_rct):#ren5爆弾と衝突したら
+        if kk_rct.colliderect(bb_rct): #ren5爆弾と衝突したら
         
-            screen.blit(bg_img, [0, 0])#追加機能3
-            screen.blit(end_img,kk_rct)#追加機能3
+            screen.blit(bg_img, [0, 0]) #追加機能3
+            screen.blit(end_img,kk_rct) #追加機能3
             
             pg.display.update()
             time.sleep(2)
@@ -99,13 +99,13 @@ def main():
         
 
         screen.blit(bg_img, [0, 0])
-        screen.blit(kk_img, kk_rct)#ren3移動量に応じて更新
+        screen.blit(kk_img, kk_rct) #ren3移動量に応じて更新
         ########bomb###########
-        bb_rct.move_ip(vx,vy)#ren2 爆弾を動かす
+        bb_rct.move_ip(vx,vy) #ren2 爆弾を動かす
         yoko,tate=check_bound(bb_rct)
-        if not yoko:#横方向にはみ出たら
+        if not yoko: #横方向にはみ出たら
             vx *= -1
-        if not tate:#縦方向にはみ出たら
+        if not tate: #縦方向にはみ出たら
             vy *= -1
 
         #avx, avy= vx*accs[min(tmr//500, 9)], vy*accs[min(tmr//500, 9)]
@@ -114,7 +114,7 @@ def main():
         sum_mv=[0,0]
         
 
-        for key,mv in delta.items():#ren3key入力判断
+        for key,mv in delta.items(): #ren3key入力判断
             if key_lst[key]:
                 sum_mv[0]+=mv[0]
                 sum_mv[1]+=mv[1]
