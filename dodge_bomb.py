@@ -25,6 +25,7 @@ def main():
     pg.display.set_caption("逃げろ！こうかとん")
     screen = pg.display.set_mode((WIDTH, HEIGHT))
     bg_img = pg.image.load("ex02/fig/pg_bg.jpg")
+    """こうかとん"""
     kk_img = pg.image.load("ex02/fig/3.png")
     kk02_img = pg.image.load("ex02/fig/3.png")
     kk03_img = pg.image.load("ex02/fig/3.png")
@@ -43,13 +44,17 @@ def main():
     kk07_img = pg.transform.rotozoom(kk07_img, 270, 2.0)
     kk08_img = pg.transform.rotozoom(kk08_img, 315, 2.0)
     end_img = pg.transform.rotozoom(end_img, 0, 2.5)
+    """爆弾"""
     bb = pg.Surface((20, 20))
     pg.draw.circle(bb, (255, 0, 0), (10, 10), 10)
+
     bb_rct=bb.get_rect()#surfaceからrect抽出
     kk_rct=kk_img.get_rect()#surfaceからrect抽出
     end_rct=end_img.get_rect()
+
     kk_rct.center=(450,200)
     end_rct.center=(450,250)
+    
     x=random.randint(0,WIDTH)
     y=random.randint(0,HEIGHT)
     vx=+5
